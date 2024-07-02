@@ -1,4 +1,4 @@
-﻿namespace ExcelReportGenerator.WebApp.Models.View_Models
+﻿namespace WorkerAssistant.WebApp.Models.View_Models
 {
     public class WeeklyTaskVM
     {

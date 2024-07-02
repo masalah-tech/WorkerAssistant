@@ -1,4 +1,4 @@
-namespace ExcelReportGenerator.WebApp.Models
+namespace WorkerAssistant.WebApp.Models
 {
     public class ErrorViewModel
     {
