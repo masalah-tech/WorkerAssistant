@@ -5,32 +5,31 @@
 
 <!-- Weekly Report -->
 <div class="col-12 mb-4">
-    <small class="text-light fw-semibold">Weekly Report</small>
     <div class="bs-stepper wizard-vertical vertical mt-2">
         <div class="bs-stepper-header">
-            <div class="step" data-target="#general-details">
+            <div class="step" data-target="#report-details">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-circle">1</span>
                     <span class="bs-stepper-label">General Details</span>
                 </button>
             </div>
             <div class="line"></div>
-            <div class="step" data-target="#tasks">
+            <div class="step" data-target="#summary">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-circle">3</span>
-                    <span class="bs-stepper-label">Tasks</span>
+                    <span class="bs-stepper-label">Summary</span>
                 </button>
             </div>
         </div>
         <div class="bs-stepper-content">
             <form onSubmit="return false">
-                <!-- General Details -->
-                <div id="general-details" class="content">
-                    <div class="content-header mb-3">
-                        <h6 class="mb-0">General Details</h6>
-                        <small>Enter the report general details</small>
-                    </div>
+                <!-- Report Details -->
+                <div id="report-details" class="content">
                     <div class="row g-3">
+                        <div class="content-header">
+                            <h6 class="mb-0">General Details</h6>
+                            <small>Enter the report general details</small>
+                        </div>
                         <div class="col-sm-6">
                             <label class="form-label" for="employee-name">Name</label>
                             <input type="text" id="employee-name" class="form-control" value="Mazen Salah" />
@@ -43,25 +42,13 @@
                                 <input type="text" id="week-end-date" placeholder="DD/MM/YYYY" class="form-control" />
                             </div>
                         </div>
-                        <div class="d-flex col-12 justify-content-between">
-                            <button class="btn btn-label-secondary btn-prev" disabled>
-                                <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                                <span class="d-none d-sm-inline-block">Previous</span>
-                            </button>
-                            <button class="btn btn-primary btn-next">
-                                <span class="d-none d-sm-inline-block me-sm-1">Next</span>
-                                <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
-                            </button>
-                        </div>
                     </div>
-                </div>
-                <!-- Tasks -->
-                <div id="tasks" class="content">
-                    <div class="content-header mb-3">
-                        <h6 class="mb-0">Tasks</h6>
-                        <small>Enter the tasks you performed in the week</small>
-                    </div>
+                    <hr class="my-4" />
                     <div class="row g-3">
+                        <div class="content-header">
+                            <h6 class="mb-0">Tasks</h6>
+                            <small>List the tasks you performed in the week</small>
+                        </div>
                         <div class="col-12 form-repeater">
                             <div data-repeater-list="group-a">
                                 <div data-repeater-item>
@@ -92,11 +79,11 @@
                                         </div>
                                         <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
                                             <label for="task-start-date" class="form-label">Start Date</label>
-                                            <input class="form-control" type="date" value="2024-07-01" id="task-start-date" />
+                                            <input type="text" id="task-start-date" placeholder="DD/MM/YYYY" class="form-control format-dd-mm-yyyy" />
                                         </div>
                                         <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
                                             <label for="task-finish-date" class="form-label">Finish Date</label>
-                                            <input class="form-control" type="date" value="2024-07-01" id="task-finish-date" />
+                                            <input class="form-control format-dd-mm-yyyy" type="text" placeholder="DD/MM/YYYY" id="task-finish-date" />
                                         </div>
                                         <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
                                             <label for="select-status" class="form-label">Status</label>
@@ -124,13 +111,31 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="d-flex col-12 justify-content-between">
-                            <button class="btn btn-primary btn-prev">
-                                <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                                <span class="d-none d-sm-inline-block">Previous</span>
-                            </button>
-                            <button class="btn btn-success btn-submit" type="button">Submit</button>
-                        </div>
+                    </div>
+                    <hr />
+                    <div class="d-flex col-12 justify-content-between">
+                        <button class="btn btn-label-secondary btn-prev" disabled>
+                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                            <span class="d-none d-sm-inline-block">Previous</span>
+                        </button>
+                        <button class="btn btn-primary btn-next">
+                            <span class="d-none d-sm-inline-block me-sm-1">Next</span>
+                            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Summary -->
+                <div id="summary" class="content">
+                    <div class="content-header mb-3">
+                        <h6 class="mb-0">Summary</h6>
+                        <small>Here is your report summary based on your inputs</small>
+                    </div>
+                    <div class="d-flex col-12 justify-content-between">
+                        <button class="btn btn-primary btn-prev">
+                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                            <span class="d-none d-sm-inline-block">Previous</span>
+                        </button>
+                        <button class="btn btn-success btn-submit" type="button">Submit</button>
                     </div>
                 </div>
             </form>

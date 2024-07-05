@@ -4,14 +4,53 @@
 
 'use strict';
 
+function getFormattedDate(date) {
+    let day = date.getDate();
+    let month = date.getMonth() + 1; // Months are zero-based
+    let year = date.getFullYear();
+    return `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`;
+}
+
+function setDateRange() {
+    let today = new Date();
+    let currentDay = today.getDay(); // Sunday - Saturday : 0 - 6
+    let startDate, endDate;
+
+    if (currentDay >= 0 && currentDay <= 4) { // Sunday to Thursday
+        startDate = new Date(today);
+        startDate.setDate(today.getDate() - currentDay);
+        endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 4);
+    } else { // Friday and Saturday
+        startDate = new Date(today);
+        startDate.setDate(today.getDate() + (7 - currentDay));
+        endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 4);
+    }
+
+    document.getElementById('week-start-date').value = getFormattedDate(startDate);
+    document.getElementById('week-end-date').value = getFormattedDate(endDate);
+}
+
 $(function () {
+    setDateRange();
+
     // Bootstrap Datepicker
     // --------------------------------------------------------------------
     var bsDatepickerRange = $('#bs-datepicker-daterange');
+    var formtDDMM = $('.format-dd-mm-yyyy');
 
-    // Range
     if (bsDatepickerRange.length) {
         bsDatepickerRange.datepicker({
+            todayHighlight: true,
+            orientation: isRtl ? 'auto right' : 'auto left',
+            format: 'dd/mm/yyyy',
+        });
+    }
+
+    // Format DD/MM/YYYY
+    if (formtDDMM.length) {
+        formtDDMM.datepicker({
             todayHighlight: true,
             orientation: isRtl ? 'auto right' : 'auto left',
             format: 'dd/mm/yyyy',
