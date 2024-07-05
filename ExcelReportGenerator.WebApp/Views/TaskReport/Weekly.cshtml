@@ -32,16 +32,16 @@
                     </div>
                     <div class="row g-3">
                         <div class="col-sm-6">
-                            <label class="form-label" for="username-vertical">Name</label>
+                            <label class="form-label" for="employee-name">Name</label>
                             <input type="text" id="employee-name" class="form-control" value="Mazen Salah" />
                         </div>
                         <div class="col-sm-6">
-                            <label for="html5-date-input" class="form-label">Week Start Date</label>
-                            <input class="form-control" type="date" value="2024-07-01" id="week-start-date" />
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="html5-date-input" class="form-label">Week End Date</label>
-                            <input class="form-control" type="date" value="2024-07-01" id="week-start-date" />
+                            <label for="week-start-date" class="form-label">Work Week</label>
+                            <div class="input-group input-daterange" id="bs-datepicker-daterange">
+                                <input type="text" id="week-start-date" placeholder="DD/MM/YYYY" class="form-control" />
+                                <span class="input-group-text">to</span>
+                                <input type="text" id="week-end-date" placeholder="DD/MM/YYYY" class="form-control" />
+                            </div>
                         </div>
                         <div class="d-flex col-12 justify-content-between">
                             <button class="btn btn-label-secondary btn-prev" disabled>
@@ -62,35 +62,49 @@
                         <small>Enter the tasks you performed in the week</small>
                     </div>
                     <div class="row g-3">
-                        <div class="col-12">
+                        <div class="col-12 form-repeater">
                             <div data-repeater-list="group-a">
                                 <div data-repeater-item>
                                     <div class="row">
-                                        <div class="col-12 col-lg-6 col-xl-3 mb-0 mb-3">
-                                            <label class="form-label" for="form-repeater-1-1">Username</label>
-                                            <input type="text" id="form-repeater-1-1" class="form-control" placeholder="john.doe" />
+                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                            <label class="form-label" for="task-details">Task Details</label>
+                                            <textarea id="task-details" rows="3" class="form-control"></textarea>
                                         </div>
-                                        <div class="col-12 col-lg-6 col-xl-3 mb-0 mb-3">
-                                            <label class="form-label" for="form-repeater-1-2">Password</label>
-                                            <input type="password"
-                                                   id="form-repeater-1-2"
-                                                   class="form-control"
-                                                   placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-xl-2 mb-0 mb-3">
-                                            <label class="form-label" for="form-repeater-1-3">Gender</label>
-                                            <select id="form-repeater-1-3" class="form-select">
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                            <label for="module" class="form-label">Module</label>
+                                            <select id="module" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                                <option value="-1" disabled selected>-- Select a module --</option>
+                                                <option value="0">Add new module</option>
+                                                <option value="Get Organized">Get Organized</option>
+                                                <option value="Talent Acquisition">Talent Acquisition</option>
+                                                <option value="Development">Development</option>
+                                                <option value="Performance Management">Performance Management</option>
                                             </select>
                                         </div>
-                                        <div class="col-12 col-lg-6 col-xl-2 mb-0 mb-3">
-                                            <label class="form-label" for="form-repeater-1-4">Profession</label>
-                                            <select id="form-repeater-1-4" class="form-select">
-                                                <option value="Designer">Designer</option>
-                                                <option value="Developer">Developer</option>
-                                                <option value="Tester">Tester</option>
-                                                <option value="Manager">Manager</option>
+                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                            <label for="category" class="form-label">Category</label>
+                                            <select id="category" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                                <option value="-1" disabled selected>-- Select a Category --</option>
+                                                <option value="0">Add new category</option>
+                                                <option value="Enhancement">Enhancement</option>
+                                                <option value="Enhancement">Bug</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                            <label for="task-start-date" class="form-label">Start Date</label>
+                                            <input class="form-control" type="date" value="2024-07-01" id="task-start-date" />
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                            <label for="task-finish-date" class="form-label">Finish Date</label>
+                                            <input class="form-control" type="date" value="2024-07-01" id="task-finish-date" />
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                            <label for="select-status" class="form-label">Status</label>
+                                            <select id="select-status" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                                <option value="-1" disabled selected>-- Select a Status --</option>
+                                                <option value="0">Add new status</option>
+                                                <option value="Done">Done</option>
+                                                <option value="InProgress">In Progress</option>
                                             </select>
                                         </div>
                                         <div class="d-flex col-12 col-lg-12 col-xl-2 align-items-center mb-0 mb-3">
@@ -136,6 +150,12 @@
     <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
     <link rel="stylesheet" href="/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
     <link rel="stylesheet" href="/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+
+    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/pickr/pickr-themes.css" />
 }
 
 @section PageCSS {
@@ -143,7 +163,6 @@
 }
 
 @section VendorsJS {
-    <!-- Vendors JS -->
     <script src="/assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
     <script src="/assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="/assets/vendor/libs/select2/select2.js"></script>
@@ -156,44 +175,18 @@
     <script src="/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
     <script src="/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js"></script>
     <script src="/assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
+
+    <script src="/assets/vendor/libs/moment/moment.js"></script>
+    <script src="/assets/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js"></script>
+    <script src="/assets/vendor/libs/jquery-timepicker/jquery-timepicker.js"></script>
+    <script src="/assets/vendor/libs/pickr/pickr.js"></script>
 }
 
 @section PageJS {
 
-    <!-- Page JS -->
     <script src="~/js/weeklyTaskReport.js" asp-append-version="true"></script>
 
-    @* <script>
-
-        function GenerateDemoReport() {
-
-            const startDate = document.querySelector("#start-date").value;
-            const endDate = document.querySelector("#end-date").value;
-
-            const requestModel = {
-                startDate: startDate,
-                endDate: endDate
-            };
-
-            $.ajax({
-                url: `/Home/GenerateDemoReport`,
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(requestModel),
-                success: function (data) {
-
-                    const link = document.createElement('a');
-                    link.href = `/weekly//${data.fileName}`;
-                    link.download = data.fileName;
-                    link.click();
-
-                },
-                error: function (xhr, status, error) {
-                    console.log("Something went wrong", error);
-                }
-            });
-        }
-
-    </script> *@
 }
 

@@ -5,23 +5,16 @@
 'use strict';
 
 $(function () {
-    const select2 = $('.select2'),
-        selectPicker = $('.selectpicker');
+    // Bootstrap Datepicker
+    // --------------------------------------------------------------------
+    var bsDatepickerRange = $('#bs-datepicker-daterange');
 
-    // Bootstrap select
-    if (selectPicker.length) {
-        selectPicker.selectpicker();
-    }
-
-    // select2
-    if (select2.length) {
-        select2.each(function () {
-            var $this = $(this);
-            $this.wrap('<div class="position-relative"></div>');
-            $this.select2({
-                placeholder: 'Select value',
-                dropdownParent: $this.parent()
-            });
+    // Range
+    if (bsDatepickerRange.length) {
+        bsDatepickerRange.datepicker({
+            todayHighlight: true,
+            orientation: isRtl ? 'auto right' : 'auto left',
+            format: 'dd/mm/yyyy',
         });
     }
 });
@@ -55,7 +48,36 @@ $(function () {
 
         if (wizardVerticalBtnSubmit) {
             wizardVerticalBtnSubmit.addEventListener('click', event => {
-                alert('Submitted..!!');
+
+
+                const employeeName = document.querySelector("#employee-name").value;
+                const weekStartDate = document.querySelector("#week-start-date").value;
+                const weekEndDate = document.querySelector("#week-end-date").value;
+
+                const requestModel = {
+                    employeeName: employeeName,
+                    weekStartDate: weekStartDate,
+                    weekEndDate: weekEndDate
+                };
+
+                $.ajax({
+                    url: `/TaskReport/GenerateDemoReport`,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestModel),
+                    success: function (data) {
+
+                        const link = document.createElement('a');
+                        link.href = `/weekly//${data.fileName}`;
+                        link.download = data.fileName;
+                        link.click();
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Something went wrong", error);
+                    }
+                });
+
             });
         }
     }
@@ -89,7 +111,6 @@ $(function () {
 
     if (formRepeater.length) {
         var row = 2;
-        var col = 1;
         formRepeater.on('submit', function (e) {
             e.preventDefault();
         });
@@ -99,10 +120,15 @@ $(function () {
                 var formLabel = $(this).find('.form-label');
 
                 fromControl.each(function (i) {
-                    var id = 'form-repeater-' + row + '-' + col;
+                    var id = `${fromControl[i].getAttribute("id")}-` + row;
                     $(fromControl[i]).attr('id', id);
                     $(formLabel[i]).attr('for', id);
-                    col++;
+
+                    if ($(fromControl[i])[0].classList.contains("select2")) {
+                        $(fromControl[i]).select2({
+                            allowClear: true
+                        });
+                    }
                 });
 
                 row++;
@@ -110,8 +136,12 @@ $(function () {
                 $(this).slideDown();
             },
             hide: function (e) {
-                confirm('Are you sure you want to delete this element?') && $(this).slideUp(e);
+                $(this).slideUp(e);
             }
+        });
+
+        $('.select2').select2({
+            allowClear: true
         });
     }
 });
