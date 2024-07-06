@@ -7,12 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\weekly\**" />
+    <Content Remove="wwwroot\weekly\**" />
+    <EmbeddedResource Remove="wwwroot\weekly\**" />
+    <None Remove="wwwroot\weekly\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EPPlus" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Services\IService\" />
-    <Folder Include="wwwroot\weekly\" />
   </ItemGroup>
 
 </Project>
