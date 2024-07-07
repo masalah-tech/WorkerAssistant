@@ -16,7 +16,7 @@
             <div class="line"></div>
             <div class="step" data-target="#summary">
                 <button type="button" class="step-trigger">
-                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-circle">2</span>
                     <span class="bs-stepper-label">Summary</span>
                 </button>
             </div>
@@ -37,9 +37,9 @@
                         <div class="col-sm-6">
                             <label for="week-start-date" class="form-label">Work Week</label>
                             <div class="input-group input-daterange" id="bs-datepicker-daterange">
-                                <input type="text" id="week-start-date" placeholder="DD/MM/YYYY" class="form-control" name="weekStartDate" />
+                                <input type="text" id="week-start-date" placeholder="DD/MM/YYYY" class="form-control bg-transparent" name="weekStartDate" readonly />
                                 <span class="input-group-text">to</span>
-                                <input type="text" id="week-end-date" placeholder="DD/MM/YYYY" class="form-control" />
+                                <input type="text" id="week-end-date" placeholder="DD/MM/YYYY" class="form-control bg-transparent" readonly />
                             </div>
                         </div>
                     </div>
@@ -55,11 +55,11 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
                                             <label class="form-label" for="taskDetails">Task Details</label>
-                                            <textarea id="taskDetails" name="taskDetails" rows="3" class="form-control"></textarea>
+                                            <textarea id="taskDetails" name="taskDetails" rows="1" class="form-control task-details"></textarea>
                                         </div>
                                         <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
                                             <label for="module" class="form-label">Module</label>
-                                            <select id="module" name="module" class="select2 form-select form-select-lg">
+                                            <select id="module" name="module" class="select2 form-select form-select-lg module">
                                                 <option value="-1" disabled selected>-- Select a module --</option>
                                                 <option value="0">Add new module</option>
                                                 <option value="Get Organized">Get Organized</option>
@@ -70,29 +70,33 @@
                                         </div>
                                         <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
                                             <label for="category" class="form-label">Category</label>
-                                            <select id="category" name="category" class="select2 form-select form-select-lg">
+                                            <select id="category" name="category" class="select2 form-select form-select-lg category">
                                                 <option value="-1" disabled selected>-- Select a Category --</option>
                                                 <option value="0">Add new category</option>
                                                 <option value="Enhancement">Enhancement</option>
                                                 <option value="Enhancement">Bug</option>
                                             </select>
                                         </div>
-                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                        <div class="col-12 col-lg-6 col-xl-3 mb-0 mb-3">
                                             <label for="taskStartDate" class="form-label">Start Date</label>
-                                            <input type="text" id="taskStartDate" name="taskStartDate" placeholder="DD/MM/YYYY" class="form-control format-dd-mm-yyyy" />
+                                            <input type="text" id="taskStartDate" name="taskStartDate" placeholder="DD/MM/YYYY" class="form-control format-dd-mm-yyyy bg-transparent task-start-date" readonly />
                                         </div>
-                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                        <div class="col-12 col-lg-6 col-xl-3 mb-0 mb-3">
                                             <label for="taskFinishDate" class="form-label">Finish Date</label>
-                                            <input class="form-control format-dd-mm-yyyy" type="text" placeholder="DD/MM/YYYY" id="taskFinishDate" name="taskFinishDate" />
+                                            <input class="form-control format-dd-mm-yyyy bg-transparent task-finish-date" type="text" placeholder="DD/MM/YYYY" id="taskFinishDate" name="taskFinishDate" readonly />
                                         </div>
-                                        <div class="col-12 col-lg-6 col-xl-4 mb-0 mb-3">
+                                        <div class="col-12 col-lg-6 col-xl-3 mb-0 mb-3">
                                             <label for="taskStatus" class="form-label">Status</label>
-                                            <select id="taskStatus" name="taskStatus" class="select2 form-select form-select-lg">
+                                            <select id="taskStatus" name="taskStatus" class="select2 form-select form-select-lg task-status">
                                                 <option value="-1" disabled selected>-- Select a Status --</option>
                                                 <option value="0">Add new status</option>
                                                 <option value="Done">Done</option>
                                                 <option value="InProgress">In Progress</option>
                                             </select>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-3 mb-0 mb-3">
+                                            <label class="form-label" for="taskComments">Comments</label>
+                                            <textarea id="taskComments" name="taskComments" rows="1" class="form-control task-comments"></textarea>
                                         </div>
                                         <div class="d-flex col-12 col-lg-12 col-xl-2 align-items-center mb-0 mb-3">
                                             <button class="btn btn-label-danger mt-4" data-repeater-delete type="button">
@@ -130,6 +134,32 @@
                         <h6 class="mb-0">Summary</h6>
                         <small>Here is your report summary based on your inputs</small>
                     </div>
+                    <!-- Basic Bootstrap Table -->
+                    <div class="row">
+                        <hr />
+                        <h5 class="col-12">Mazen Salah - Task Report (30-06-2024 to 04-07-2024)</h5>
+                        <hr />
+                        <div class="table-responsive text-nowrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tasks Details</th>
+                                        <th>Module</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th>Complete Date</th>
+                                        <th>Status</th>
+                                        <th>Comments</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/ Basic Bootstrap Table -->
                     <div class="d-flex col-12 justify-content-between">
                         <button class="btn btn-primary btn-prev">
                             <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>

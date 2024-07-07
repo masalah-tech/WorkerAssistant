@@ -4,6 +4,10 @@
 
 'use strict';
 
+function applyEventListeners() {
+    const inputElems = document.querySelectorAll("input");
+}
+
 function getFormattedDate(date) {
     let day = date.getDate();
     let month = date.getMonth() + 1; // Months are zero-based
@@ -151,7 +155,19 @@ function validateForm() {
                         }
                     }
                 }
-            }
+            },
+            taskComments: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    },
+                    stringLength: {
+                        min: 3,
+                        max: 500,
+                        message: 'The task comments must be more than 3 and less than 500 characters long'
+                    }
+                }
+            },
         },
         plugins: {
             trigger: new FormValidation.plugins.Trigger(),
@@ -373,6 +389,8 @@ $(function () {
                 wizardVerticalBtnNext.addEventListener('click', event => {
                     fv.validate().then(function (status) {
                         if (status === 'Valid') {
+
+                            updateSummary();
                             verticalStepper.next();
                         }
                     });
@@ -425,3 +443,31 @@ $(function () {
 
 })();
 
+function updateSummary() {
+    const tableBody = document.querySelector("#summary tbody");
+    const repeaterRows = document.querySelectorAll(".form-repeater [data-repeater-item]")
+
+    let counter = 1;
+    let output
+
+    tableBody.innerHTML = ``;
+
+    repeaterRows.forEach(row => {
+
+        output = ``;
+
+        output += `<tr>`;
+        output += `<td>${counter++}</td>`;
+        output += `<td>${row.querySelector(".task-details").value}</td>`;
+        output += `<td>${row.querySelector(".module").value}</td>`;
+        output += `<td>${row.querySelector(".category").value}</td>`;
+        output += `<td>${row.querySelector(".task-start-date").value}</td>`;
+        output += `<td>${row.querySelector(".task-finish-date").value}</td>`;
+        output += `<td>${row.querySelector(".task-status").value}</td>`;
+        output += `</tr>`;
+
+        tableBody.innerHTML += output;
+    });
+
+
+}
